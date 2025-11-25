@@ -1,0 +1,143 @@
+Erkundung und Vorhersage der Hauspreise in
+Boston
+Ziel dieses Projekts:
+Das Hauptziel dieses Projekts ist es, die Beziehung zwischen den
+verschiedenen Variablen des Bostoner Datensatzes zu verstehen und
+Vorhersagemodelle zu erstellen. Die Teilnehmenden sollen in der Lage sein,
+sowohl maschinelle Lernmodelle als auch ein einfaches neuronales
+Netzwerk zu testen, um die beste Methode zur Vorhersage der mittleren
+Werte der Eigenheimbesitzer (MEDV) zu finden. Am Ende des Projekts
+sollten die Teilnehmenden in der Lage sein, ihre Erkenntnisse klar zu
+artikulieren und zu begründen.
+Das Ergebnis dieses Projekts sollte ein Jupyter-Notebook sein, welches den
+Code, die Grafiken, Observationen und die Ergebnisse kommentiert.
+Zusätzliche Anforderungen:
+● Ziele definieren: Definiere zu Beginn des Notebooks deine eigenen
+spezifischen Ziele für diese Analyse. Was erhoffst du zu lernen oder zu
+entdecken?
+● Kommentieren und Beschreiben: Jeder Codeblock soll durch
+Kommentare im Code oder durch Textzellen im Jupyter-Notebook
+erklärt werden. Dies gewährleistet, dass der Ansatz transparent und
+für andere nachvollziehbar ist.
+● Zusammenfassung/Fazit: Schreibe am Ende des Notebooks eine
+ausführliche Zusammenfassung und ein Fazit über deine
+Erkenntnisse, die Qualität deiner Modelle und verfasse mögliche
+Verbesserungen oder weiterführende Untersuchungen.
+ 
+ 
+Aufgabenstellung:
+1. Explorative Datenanalyse, Datenbereinigung und Normalisierung
+a. Prüfe den Datensatz auf fehlende oder doppelte Werte und
+behandle sie entsprechend. Falls notwendig, formatiere die
+Werte.
+b. Analysiere die Eigenschaften der Daten mit deskriptiven
+Statistiken (Mittelwert, Modus, Median, Varianz, Abweichung).
+c. Berechne und interpretiere den Korrelationswert zwischen den
+abhängigen Variablen und der unabhängigen Variable.
+Vorsicht: Der Korrelationswert setzt eine annähernde
+Normalverteilung der Daten voraus. Prüfe die Spalten danach
+und falls diese Voraussetzung nicht erfüllt ist, wende alternativ
+den Rangkorrelationskoeffizient an. 1
+d. Erstelle Streudiagramme mit Matplotlib, um die Beziehung
+zwischen drei Variablen (RM, LSTAT, CRIM) und ihren
+Auswirkungen auf die mittleren Eigenheim Werte (MEDV)
+darzustellen.
+e. Skaliere die Variablen, um sie für die Modellierung
+vorzubereiten.
+1 Der (Spearman) Rangkorrelationskoeffizient bewertet die Stärke und
+Richtung einer monotonen Beziehung zwischen Variablen, und seine Werte
+liegen zwischen -1 (vollständig abnehmende Beziehung) und 1 (vollständig
+zunehmende Beziehung), während 0 eine fehlende Korrelation anzeigt, im
+Gegensatz zum (Pearson) Korrelationskoeffizienten, der eine lineare
+Beziehung misst und von -1 (vollständig negative lineare Beziehung) bis 1
+(vollständig positive lineare Beziehung) reicht, mit 0 als Anzeichen einer
+fehlenden linearer Korrelation. (Siehe:
+https://de.wikipedia.org/wiki/Rangkorrelationskoeffizient und ‘spearman’
+Methode
+https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html)
+ 
+PA Data Science K4.0045_3.0
+1
+2. Clustering mit Unsupervised Learning
+a. Gruppiere die Stadtteile Bostons in wirtschaftlichen Status &
+Zugänglichkeit mithilfe des K-Means Clustering Algorithmus.
+Nutze die Spalten CRIM, LSTAT und DIS für diesen Zweck.
+b. Verwende den Silhouetten-Koeffizienten, um die optimale
+Anzahl an Cluster zu berechnen. Die minimale Anzahl von
+Clustern ist zwei und die maximale ist 10.
+c. Stelle den Silhouetten-Koeffizienten für jede Clusteranzahl
+graphisch in Matplotlib dar.
+d. Stelle die Datenpunkte mit zugewiesenem Cluster innerhalb
+von drei 2-D Streudiagrammen dar, berechne die Anzahl der
+zugehörigen Datenpunkte jedes Clusters und interpretiere das
+Ergebnis. (CRIM & LSTAT, LSTAT & DIS, DIS & CRIM)
+3. Modellierung mit Supervised Learning
+a. Teile den Datensatz in Test-/Trainingsdaten auf.
+b. Modelliere die Vorhersage des MEDV mit den Trainingsdaten
+basierend auf den folgenden Methoden:
+i. Multiple Lineare Regression
+1. Benutze als unabhängige Variablen nur LSTAT, RM
+und DIS.
+2. Erstelle einen 3D Plot, um die Hyperebene der
+Regression zu visualisieren.
+ii. K-Nearest Neighbors
+1. Benutze die euklidische Distanz, fünf Nachbarn und
+den Ball-Tree Algorithmus
+iii. Entscheidungsbaum
+1. Benutze maximal drei Ebenen
+2. Visualisiere das Model
+iv. Ein Feedforward-Neuronales Netzwerk (PyTorch)
+ 
+PA Data Science K4.0045_3.0
+2
+1. Benutze den Adam Optimizer2
+2. Benutze die ReLU Aktivierungsfunktion und
+insgesamt drei Schichten (Eingabe, Innere,
+Ausgabe)
+3. Benutze den Mean Squared Error für die Loss
+Funktion 3
+4. Trainiere das Modell für 100 Epochen und printe den
+Loss für jede 10te Epoche
+c. Vergleiche die Modelle mit den Testdaten anhand des mittleren
+quadratischen Fehlers. Welches Modell scheint sich am besten
+für die Vorhersage zu eignen?
+Boston Housing Datensatz
+Dieser Datensatz enthält Informationen, die vom U.S. Census Service
+bezüglich der Wohnsituation in der Region Boston, Massachusetts,
+gesammelt wurden. Er stammt aus dem StatLib-Archiv
+(http://lib.stat.cmu.edu/datasets/boston) und diente oft als Benchmark für
+Algorithmen. Der Datensatz umfasst 506 Einträge, wobei jeder Eintrag
+einen Vorort oder eine Stadt in Boston beschreibt. Er wurde ursprünglich
+von Harrison, D. und Rubinfeld, D.L. in "Hedonic prices and the demand for
+clean air", J. Environ. Economics & Management, vol.5, 81-102, 1978,
+veröffentlicht.
+2 Adam Optimizer Link: Adam ist ein Optimierungsalgorithmus, der häufig
+in neuronalen Netzwerken verwendet wird. Er passt die Lernrate dynamisch
+an und optimiert so den Trainingsprozess.
+3 Mean Squared Error (MSE) Loss Funktion Link: Der MSE ist ein häufig
+verwendetes Verlustmaß für Regressionsprobleme. Es misst die
+durchschnittliche quadratische Abweichung zwischen den vorhergesagten
+Werten und den tatsächlichen Werten.
+ 
+PA Data Science K4.0045_3.0
+3
+Herkunft: Natürlich
+Anzahl der Einträge: 506
+Reihenfolge der Fälle: Unbekannt
+Es gibt 14 Attribute pro Eintrag:
+● CRIM: Kriminalitätsrate pro Kopf nach Stadt
+● ZN: Anteil der Wohngrundstücke für Parzellen über 25.000
+Quadratfuß
+● INDUS: Anteil der nicht Einzelhandelsbetriebsflächen pro Stadt
+● CHAS: Dummy-Variable für den Charles River (1, wenn Fläche an den
+Fluss grenzt; sonst 0)
+● NOX: Konzentration von Stickoxiden (Teile pro 10 Millionen)
+● RM: Durchschnittliche Zimmeranzahl pro Wohnung
+● AGE: Anteil der vor 1940 gebauten, selbst genutzten Wohnungen
+● DIS: Gewichtete Entfernungen zu fünf Bostoner Arbeitszentren
+● RAD: Index für die Erreichbarkeit von radialen Autobahnen
+● TAX: Vollwertige Grundsteuer pro $10.000
+● PTRATIO: Schüler-Lehrer-Verhältnis nach Stadt
+● LSTAT: % der Bevölkerung mit niedrigem Status
+● MEDV: Medianwert der selbstgenutzten Häuser in Tausenden von
+Dollar
